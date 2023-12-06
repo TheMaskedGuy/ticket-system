@@ -1,5 +1,3 @@
-Sure, I can help you with that. Here is a sample README file for a NestJS app that can handle user feedback, tickets, and FAQs using Prisma, Postgres, and Docker:
-
 # NestJS App with Prisma, Postgres, and Docker
 
 This is a sample NestJS application that demonstrates how to use Prisma, Postgres, and Docker to handle user feedback, tickets, and FAQs.
@@ -43,7 +41,6 @@ The application provides the following endpoints:
 The application can be configured using the following environment variables:
 
 - `DATABASE_URL`: The URL of the Postgres database.
-- `PORT`: The port on which the application should listen.
 
 ## License
 
