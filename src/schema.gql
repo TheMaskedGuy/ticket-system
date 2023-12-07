@@ -63,9 +63,9 @@ type Ticket {
 input UpdateTicketslInput {
   assignedTo: Int
   closedAt: DateTime
-  description: String!
+  description: String
   priority: Priority
-  status: Status!
-  subject: String!
-  userID: Int!
+  status: Status
+  subject: String
+  userID: Int
 }
