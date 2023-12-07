@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { DBService } from '../db.service';
-import { Prisma, PrismaClient, Ticket } from '@prisma/client';
+import { Ticket } from '@prisma/client';
 import { CreateTicketsInput } from 'src/tickets/dto/create-tickets.input';
 import { UpdateTicketslInput } from 'src/tickets/dto/update-tickets.input';
 
@@ -22,19 +22,19 @@ export class TicketRepository {
   }
 
   async getAllTicketsForAUser(userID: number) {
-    return this.prisma.ticket.findMany({ where: { userID } });
+    return await this.prisma.ticket.findMany({ where: { userID } });
   }
 
   async getSingleTicket(ticketID: number) {
-    return this.prisma.ticket.findUnique({
+    return await this.prisma.ticket.findUnique({
       where: {
         ticketID,
       },
     });
   }
 
-  updateTicket(ticketID: number, updateTicketslInput: UpdateTicketslInput) {
-    return this.prisma.ticket.update({
+  async updateTicket(ticketID: number, updateTicketslInput: UpdateTicketslInput) {
+    return await this.prisma.ticket.update({
       where: { ticketID },
       data: {
         userID: updateTicketslInput.userID,
