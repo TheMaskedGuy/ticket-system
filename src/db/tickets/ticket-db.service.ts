@@ -33,7 +33,7 @@ export class TicketsDbService {
       return this.ticketRepo.getAllTicketsForAUser(userID);
     } catch (error) {
       throw new InternalServerErrorException(
-        'Error while fetching tickets for the user.',
+        'Error while fetching tickets for the user',
       );
     }
   }
@@ -49,7 +49,7 @@ export class TicketsDbService {
       return ticket;
     } catch (error) {
       throw new InternalServerErrorException(
-        'Error while fetching the ticket.',
+        'Error while fetching the ticket',
       );
     }
   }
