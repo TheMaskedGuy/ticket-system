@@ -12,7 +12,7 @@ export class CreateTicketsInput {
   @Field()
   description: string;
 
-  @Field(() => Status)
+  @Field(() => Status,{ nullable: true })
   status: Status;
 
   @Field(() => Priority, { nullable: true })

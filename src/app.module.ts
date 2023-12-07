@@ -7,9 +7,7 @@ import { FeedbacksModule } from './feedbacks/feedbacks.module';
 import { FaqsModule } from './faqs/faqs.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-
 import { join } from 'path';
-import { TestGrphQlModule } from './test-grph-ql/test-grph-ql.module';
 
 @Module({
   imports: [
@@ -18,7 +16,7 @@ import { TestGrphQlModule } from './test-grph-ql/test-grph-ql.module';
       autoSchemaFile: join(process.cwd(),'src/schema.gql'),
       sortSchema: true,
     }),
-    DBModule, TicketsModule, FeedbacksModule, FaqsModule, TestGrphQlModule],
+    DBModule, TicketsModule, FeedbacksModule, FaqsModule],
   controllers: [AppController],
   providers: [AppService],
 })
