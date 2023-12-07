@@ -1,6 +1,4 @@
 import {  Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { DBModule } from './db/db.module';
 import { TicketsModule } from './tickets/tickets.module';
 import { FeedbacksModule } from './feedbacks/feedbacks.module';
@@ -17,7 +15,5 @@ import { join } from 'path';
       sortSchema: true,
     }),
     DBModule, TicketsModule, FeedbacksModule, FaqsModule],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
