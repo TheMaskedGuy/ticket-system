@@ -1,37 +1,30 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { TicketRepository } from 'src/db/tickets/ticket-db.repository';
+import { CreateTicketsInput } from './dto/create-tickets.input';
+import { UpdateTicketslInput } from './dto/update-tickets.input';
 
 @Injectable()
 export class TicketsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly ticketRepo: TicketRepository) {}
 
-  async createTicket(createTicketDto: Prisma.TicketUncheckedCreateInput) {
-    return this.prisma.ticket.create({
-      data: createTicketDto,
-    });
+  async createTicket(createTicketDto: CreateTicketsInput) {
+    return this.ticketRepo.createTicket(createTicketDto);
   }
 
   async getAllTicketsForAUser(userID: number) {
-    return this.prisma.ticket.findMany({where:{userID}});
+    return this.ticketRepo.getAllTicketsForAUser(userID);
   }
 
   async getSingleTicket(ticketID: number) {
-    return this.prisma.ticket.findUnique({
-      where: {
-        ticketID,
-      },
-    });
+    return this.ticketRepo.getSingleTicket(ticketID);
   }
 
-  updateTicket(ticketID: number, updateTicketDto: Prisma.TicketUpdateInput) {
-    return this.prisma.ticket.update({
-      where: { ticketID },
-      data: updateTicketDto,
-    });
+  async updateTicket(ticketID: number, updateTicketDto: UpdateTicketslInput) {
+    return this.ticketRepo.updateTicket(ticketID, updateTicketDto);
   }
 
- async deleteTicket(ticketID: number) {
-    return this.prisma.ticket.delete({where: {ticketID}});
+  async deleteTicket(ticketID: number) {
+    return this.ticketRepo.deleteTicket(ticketID);
   }
 }

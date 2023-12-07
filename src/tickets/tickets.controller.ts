@@ -2,6 +2,8 @@ import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common'
 import { TicketsService } from './tickets.service';
 import { Prisma, PrismaClient } from '@prisma/client';
 import { ApiTags } from '@nestjs/swagger';
+import { UpdateTicketslInput } from './dto/update-tickets.input';
+import { CreateTicketsInput } from './dto/create-tickets.input';
 
 @Controller('tickets')
 @ApiTags('Ticket')
@@ -9,7 +11,7 @@ export class TicketsController {
   constructor(private readonly ticketsService: TicketsService) {}
 
   @Post()
-  createTicket(@Body() createTicketDto: Prisma.TicketUncheckedCreateInput) {
+  createTicket(@Body() createTicketDto: CreateTicketsInput) {
     return this.ticketsService.createTicket(createTicketDto);
   }
 
@@ -24,7 +26,7 @@ export class TicketsController {
   }
 
   @Put(':id')
-  updateTicket(@Param('id') id: string, @Body() updateTicketDto: Prisma.TicketUpdateInput) {
+  updateTicket(@Param('id') id: string, @Body() updateTicketDto: UpdateTicketslInput) {
     return this.ticketsService.updateTicket(+id, updateTicketDto);
   }
 

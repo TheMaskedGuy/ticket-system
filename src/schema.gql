@@ -1,0 +1,54 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateTestGrphQlInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createTestGrphQl(createTestGrphQlInput: CreateTestGrphQlInput!): TestGrphQl!
+  removeTestGrphQl(id: Int!): TestGrphQl!
+  updateTestGrphQl(updateTestGrphQlInput: UpdateTestGrphQlInput!): TestGrphQl!
+}
+
+enum Priority {
+  HIGH
+  LOW
+  MEDIUM
+}
+
+type Query {
+  testGrphQl(id: Int!): TestGrphQl!
+}
+
+enum Status {
+  CLOSED
+  INPROCESS
+  OPEN
+}
+
+type TestGrphQl {
+  assignedTo: Int
+  closedAt: DateTime
+  createdAt: DateTime
+  description: String!
+  priority: Priority
+  status: Status!
+  subject: String!
+  ticketID: Int!
+  updatedAt: DateTime
+  userID: Int!
+}
+
+input UpdateTestGrphQlInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}

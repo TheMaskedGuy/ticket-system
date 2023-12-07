@@ -1,37 +1,24 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
 import { Prisma } from '@prisma/client';
+import { FaqRepository } from 'src/db/faqs/faqs-db.repository';
 
 @Injectable()
 export class FaqsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly faqRepo: FaqRepository) {}
 
   createFaq(createFaqDto: Prisma.FAQCreateInput) {
-    return this.prisma.fAQ.create({
-      data: createFaqDto,
-    });
+    return this.faqRepo.createFaq(createFaqDto);
   }
 
   getAllActiveFaqs() {
-    return this.prisma.fAQ.findMany({
-      where: {
-        isActive: true,
-      },
-    });
+    return this.faqRepo.getAllActiveFaqs();
   }
 
   updateFaq(faqID: number, updateFaqDto: Prisma.FAQUpdateInput) {
-    return this.prisma.fAQ.update({
-      where: {
-        faqID,
-      },
-      data: updateFaqDto,
-    });
+    return this.faqRepo.updateFaq(faqID, updateFaqDto);
   }
 
   deleteFaq(faqID: number) {
-    return this.prisma.fAQ.delete({where:{
-      faqID
-    }});
+    return this.faqRepo.deleteFaq(faqID);
   }
 }

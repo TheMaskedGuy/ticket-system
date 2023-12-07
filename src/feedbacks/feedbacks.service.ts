@@ -1,24 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { PrismaService } from 'src/prisma/prisma.service';
-
+import { FeedbackRepository } from 'src/db/feedbacks/feedback-db.repository';
 
 @Injectable()
 export class FeedbacksService {
-  constructor(private readonly prisma: PrismaService){}
+  constructor(private readonly feedbackRepo: FeedbackRepository) {}
 
   async createFeedback(createFeedbackDto: Prisma.FeedbackUncheckedCreateInput) {
-    return this.prisma.feedback.create({
-      data: createFeedbackDto,
-    });
+    return this.feedbackRepo.createFeedback(createFeedbackDto);
   }
 
   async getAllFeedbacks() {
-    return this.prisma.feedback.findMany({});
+    return this.feedbackRepo.getAllFeedbacks();
   }
 
   async getSingleFeedback(feedbackID: number) {
-     return this.prisma.feedback.findUnique({where:{feedbackID}});
+    return this.feedbackRepo.getSingleFeedback(feedbackID);
   }
-
 }
